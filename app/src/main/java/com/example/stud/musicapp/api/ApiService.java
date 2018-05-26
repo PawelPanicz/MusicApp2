@@ -10,7 +10,7 @@ public class ApiService {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl( "http://www.theaudiodb.com/api/v1/json/1/" )
                 .addConverterFactory(GsonConverterFactory. create ())
-                .build();build();
+                .build();
         return retrofit.create(ApiClient.class);
     }
 
