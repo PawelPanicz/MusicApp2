@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stud.musicapp">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,7 +20,8 @@
         </activity>
         <activity
             android:name=".topsongs.TopSongs"
-            android:label="@string/top_songs"/>
+            android:label="@string/top_songs" />
+        <activity android:name=".topsongs.SongDetailsActivity"></activity>
     </application>
 
 </manifest>

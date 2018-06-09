@@ -1,5 +1,6 @@
 package com.example.stud.musicapp.topsongs;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +36,24 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
     @Override
     public void onBindViewHolder(TopSongsViewHolder holder, int position) {
 
-        TrendingSingle single = singles.get(position);
+        final TrendingSingle single = singles.get(position);
 
         holder.tvPlace.setText(String.valueOf(single.intChartPlace));
         holder.tvTrack.setText(single.strTrack);
         holder.tvArtist.setText(single.strArtist);
         holder.tvAlbum.setText(single.strAlbum);
+
+        holder.llContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SongDetailsActivity.class);
+                intent.putExtra(SongDetailsActivity.TRACK , single.strTrack );
+                intent.putExtra(SongDetailsActivity.ARTIST , single.strArtist );
+                intent.putExtra(SongDetailsActivity.TRACK_ID , single.idTrack );
+                view.getContext().startActivity(intent);
+
+            }
+        });
 
     }
 
