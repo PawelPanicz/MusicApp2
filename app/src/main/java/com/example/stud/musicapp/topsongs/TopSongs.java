@@ -3,6 +3,7 @@ package com.example.stud.musicapp.topsongs;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,7 +11,10 @@ import android.widget.Toast;
 import com.example.stud.musicapp.R;
 import com.example.stud.musicapp.api.ApiService;
 import com.example.stud.musicapp.api.TrendingList;
+import com.example.stud.musicapp.api.TrendingSingle;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +42,10 @@ public class TopSongs extends AppCompatActivity {
             public void onResponse( @NonNull Call<TrendingList> call, @NonNull
                     Response<TrendingList> response) {
                 TrendingList trendingList = response.body();
-                Log. d ( "TAG" , new Gson().toJson(trendingList));
+
+                if(trendingList != null && trendingList.trending != null){
+                    setList(trendingList.trending);
+                }
             }
 
             @Override
@@ -47,6 +54,19 @@ public class TopSongs extends AppCompatActivity {
                         t.getLocalizedMessage(), Toast. LENGTH_SHORT ).show();
             }
         });
+    }
+
+    private void setList(List<TrendingSingle> singles){
+        TopSongsAdapter topSongsAdapter = new TopSongsAdapter(singles);
+        rvList.setAdapter(topSongsAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvList.setLayoutManager(linearLayoutManager);
+
+        rvList.getAdapter().notifyDataSetChanged();
+
     }
 
     @Override
