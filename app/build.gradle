@@ -16,6 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+}
+
+repositories {
+    mavenCentral()
+    google()
 }
 
 dependencies {
@@ -29,4 +35,10 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    implementation ( "com.github.bumptech.glide:glide:4.7.1" ) {
+        exclude group : "com.android.support"
+    }
+    implementation "com.android.support:support-fragment:26.1.0"
+
 }
