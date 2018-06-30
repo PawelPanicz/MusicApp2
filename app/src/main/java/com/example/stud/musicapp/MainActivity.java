@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button bTopSongs = findViewById(R.id.bTopSongs);
+        Button bFavorites = findViewById(R.id.bFavorites);
 
         bTopSongs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentt = new Intent(MainActivity.this, MusicApplication.class);
+                startActivity(intentt);
+            }
+        });
 
 
     }
